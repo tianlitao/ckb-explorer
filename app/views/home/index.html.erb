@@ -1,0 +1,92 @@
+
+<div class="max-w-screen-xl mx-auto">
+  <div class="w-full p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800 mx-auto" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= (@daily_static.circulating_supply.to_f / 10 ** 17).round(2) %>B
+        </dt>
+        <dd class="text-gray-500 dark:text-gray-400">当前供应量</dd>
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= @static_info.transactions_count_per_minute %></dt>
+        <dd class="text-gray-500 dark:text-gray-400">每分钟的交易数</dd>
+      </div>
+
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= (@static_info.transactions_last_24hrs.to_f / 1000).round(2) %>K
+        </dt>
+        <dd class="text-gray-500 dark:text-gray-400">最近 24 小时的交易数</dd>
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= (@static_info.average_block_time / 1000).round(2) %>s</dt>
+        <dd class="text-gray-500 dark:text-gray-400">平均出块时间</dd>
+      </div>
+    </dl>
+    <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= (@static_info.hash_rate.to_f / 10 ** 12).round(2) %>PH/s</dt>
+        <dd class="text-gray-500 dark:text-gray-400">算力</dd>
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= (@static_info.current_epoch_difficulty.to_f / 10 ** 18).round(2) %>
+          EH
+        </dt>
+        <dd class="text-gray-500 dark:text-gray-400">难度</dd>
+      </div>
+
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= @static_info.epoch_info[:epoch_number] %></dt>
+        <dd class="text-gray-500 dark:text-gray-400">Epoch</dd>
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl font-extrabold"><%= "#{(@static_info.estimated_epoch_time / 1000 / 3600).to_i}h#{(((@static_info.estimated_epoch_time / 1000) % 3600) / 60).to_i}m" %></dt>
+        <dd class="text-gray-500 dark:text-gray-400">预计 Epoch 时间</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row">
+    <div class="flex-1 border border-gray-300 p-4 rounded-lg shadow-lg m-2">
+      <h4 class="text-2xl font-bold dark:text-white">最新区块</h4>
+      <% @blocks.each do |block| %>
+        <div class="flex w-full pb-3">
+          <div class="flex-1 whitespace-nowrap mr-4">
+            # <%= block.number %>
+          </div>
+          <div class="flex-grow whitespace-nowrap mr-4" style="flex-grow: 2;">
+            矿工 <%= link_to block.miner_hash.to_s.gsub(/(.{16}).*(.{16})/,'\1...\2'), address_path(block.miner_hash), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+          </div>
+          <div class="flex-1 whitespace-nowrap">
+            <%= block.ckb_transactions_count %>Txs
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="flex-1 border border-gray-300 p-4 rounded-lg shadow-lg m-2">
+      <h4 class="text-2xl font-bold dark:text-white">最新交易</h4>
+        <% @transactions.each do |ckb_transaction| %>
+        <div class="flex w-full pb-3">
+          <div class="flex-grow whitespace-nowrap mr-4"  style="flex-grow: 2;">
+            <%= link_to ckb_transaction.tx_hash.to_s.gsub(/(.{16}).*(.{16})/,'\1...\2'), transaction_path(ckb_transaction.tx_hash), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+          </div>
+
+          <div class="flex-1 whitespace-nowrap mr-4">
+            #<%= link_to ckb_transaction.block_number, block_path(ckb_transaction.block_number), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+          </div>
+
+          <div class="flex-1 whitespace-nowrap">
+            <%= (ckb_transaction.capacity_involved.to_f/10**8).round(2) %>CKB
+          </div>
+        </div>
+        <% end %>
+    </div>
+
+  </div>
+
+  <div id="mapGraph" class="min-h-[540px] mt-10">
+
+  </div>
+
+</div>

@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source "https://gems.ruby-china.com/"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
@@ -14,6 +14,8 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma" # , "~> 4.3.12", require: false
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -125,3 +127,13 @@ gem "after_commit_everywhere"
 gem "kredis"
 
 gem "async-websocket", "~> 0.22.1", require: false
+
+gem 'acts-as-taggable-on', '~> 9.0'
+gem 'rest-client'
+gem "turbo-rails", "~> 2.0.0.pre.beta"
+gem "tailwindcss-rails", "~> 2.0"
+gem 'cssbundling-rails'
+
+gem 'jsbundling-rails'
+
+gem "kaminari"

@@ -1,0 +1,93 @@
+<div class="w-full max-w-screen-xl mx-auto  flex flex-col md:flex-row">
+  <div class="flex-1 border border-gray-300 p-4 rounded-lg shadow-lg m-4">
+    <div class="border-b border-gray-200">
+      <h4 class="text-2xl font-bold dark:text-white">交易总览</h4>
+    </div>
+    <div class="mb-4 mt-4">
+      <div>
+        <span>Tx：</span>
+      </div>
+      <div class="break-words whitespace-normal">
+        <%= @transaction.tx_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+      </div>
+    </div>
+
+    <div class="mb-4 mt-4">
+      <div>
+        <span>时间：</span>
+      </div>
+      <div class="break-words whitespace-normal">
+        <%= Time.at(@transaction.block_timestamp/1000).strftime("%Y-%m-%d %H:%M:%S") %>
+      </div>
+    </div>
+    <div class="mb-4 mt-4">
+      <div>
+        <span>交易费：</span>
+      </div>
+      <div class="break-words whitespace-normal">
+        <%= (@transaction.transaction_fee.to_f / 10 ** 8).round(8) %>CKB
+      </div>
+    </div>
+
+    <div class="mb-4 mt-4">
+      <div>
+        <span>交易体积：</span>
+      </div>
+      <div class="break-words whitespace-normal">
+        <%= @transaction.cycles %>
+      </div>
+    </div>
+
+  </div>
+  <div class="flex-grow border border-gray-300 p-4 rounded-lg shadow-lg m-4" style="flex-grow: 2;">
+    <div class="border-b border-gray-200">
+      <h4 class="text-2xl font-bold dark:text-white">交易详情</h4>
+    </div>
+
+      <div class="border-b border-gray-200">
+
+        <div class="mb-4 mt-4">
+          <div class="break-words whitespace-normal">
+            Tx：<%= @transaction.tx_hash %>
+            区块：<%= @transaction.block_number %>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-1">
+            <h5 class="text-1xl font-bold dark:text-white">输入</h5>
+            <% @transaction.display_inputs.each do |input| %>
+              <div class="bg-green-50 p-4 m-4">
+                <% if input[:from_cellbase] %>
+                  <div>
+                    Cellbase for Block <%= input[:target_block_number] %>
+                  </div>
+                <% else %>
+                  <div>
+                    <%= input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                  </div>
+                  <div>
+                    <%= (input[:capacity].to_f / 10 ** 8).round(2) %>CKB
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex-1">
+            <h5 class="text-1xl font-bold dark:text-white">输出</h5>
+            <% @transaction.display_outputs.each do |output| %>
+              <div class="bg-green-50 p-4 m-4">
+                <div>
+                  <%= output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                </div>
+                <div>
+                  <%= (output[:capacity].to_f / 10 ** 8).round(2) %>CKB
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+
+  </div>
+</div>

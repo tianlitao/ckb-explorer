@@ -57,6 +57,8 @@ class Block < ApplicationRecord
   scope :created_between, ->(from, to) { where(timestamp: from..to) }
   scope :h24, -> { where("timestamp > ?", 24.hours.ago.to_datetime.strftime("%Q")) }
 
+  # broadcasts_refreshes
+
   def self.tip_block
     recent.first
   end

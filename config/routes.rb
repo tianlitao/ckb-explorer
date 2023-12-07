@@ -10,7 +10,12 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
 
-  root "application#homepage"
+  root "home#index"
+
+  resources :addresses
+  resources :transactions
+  resources :blocks
+
   namespace :api do
     namespace :v1 do
       namespace :external do

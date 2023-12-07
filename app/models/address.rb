@@ -1,4 +1,7 @@
 class Address < ApplicationRecord
+  acts_as_taggable_on :tags
+
+
   PREFIX_MAINNET = "ckb".freeze
   PREFIX_TESTNET = "ckt".freeze
 
