@@ -1,6 +1,11 @@
-<div id="<%= dom_id(block) %>">
-  <div class="flex flex-col pb-3">
-    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400"><%= block.number %></dt>
-    <dd class="text-lg font-semibold"><%= block.miner_hash[0..20] %></dd>
+<div class="flex w-full pb-3 block_simple flex-col md:flex-row" id="<%= dom_id(block) %>">
+  <div class="flex-1 whitespace-nowrap mr-4">
+    # <%= link_to block.number, block_path(block.number), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+  </div>
+  <div class="flex-grow whitespace-nowrap mr-4" style="flex-grow: 2;">
+    <%= t 'miner' %> <%= link_to block.miner_hash.to_s.gsub(/(.{16}).*(.{16})/,'\1...\2'), address_path(block.miner_hash), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+  </div>
+  <div class="flex-1 whitespace-nowrap">
+    <%= block.ckb_transactions_count %>Txs
   </div>
 </div>

@@ -55,6 +55,9 @@ class CkbTransaction < ApplicationRecord
   after_commit :flush_cache
   before_destroy :recover_dead_cell
   before_destroy :log_deletion_chain
+  
+
+
 
   def self.cached_find(query_key)
     Rails.cache.realize([name, query_key], race_condition_ttl: 3.seconds) do

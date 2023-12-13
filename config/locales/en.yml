@@ -30,4 +30,54 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  home: "Dashboard"
+  address_index: "Top Address"
+  miner: "Miner"
+  login: 'Login'
+  total_supply: 'Total Supply'
+  transaction_per_minute: 'Transactions per Minute'
+  transaction_last_24_hours: 'Transactions in Last 24hrs'
+  average_block_time: 'Average Block Time'
+  mining_hash_rate: 'Mining Hash Rate'
+  mining_difficulty: 'Mining Difficulty'
+  epoch: 'Epoch'
+  estimated_epoch_time: 'Estimated Epoch Time'
+  latest_blocks: 'Latest Blocks'
+  latest_transactions: 'Latest Transactions'
+  all_address_count: "Addresses with >= 0 CKB"
+  top_10_address_count: "Top 10 Addresses Own"
+  top_100_address_count: "Top 100 Addresses Own"
+  top_1000_address_count: "Top 1000 Addresses Own"
+  address_ranking: "Address Ranking"
+  index: "Index"
+  address: "Address"
+  tag: "Tags"
+  balance: "Balance"
+  percentage: "Percentage"
+  address_detail: "Address Detail"
+  nervos_dao_deposit: "Nervos DAO Deposit"
+  live_cell: "Live Cells"
+  transaction_history: "Transactions History"
+  block: "Block"
+  input: "Input"
+  output: "Output"
+  transaction_overview: "Transaction Overview"
+  block_timestamp: 'DateTime'
+  transaction_fee: 'Transaction Fee'
+  transaction_cycles: 'Transaction Cycles'
+  transaction_detail: 'Transaction Detail'
+  transaction_in_this_block: 'Transactions in this block'
+  block_detail: 'Block Detail'
+  block_cycles: 'Block Cycles'
+  block_transaction_count: 'Block Transaction Count'
+  miner_reward: 'Miner Reward'
+  ckb_node_online: 'Ckb Node Online'
+  ckb_node_online_count: 'There are a total of <span>0</span> active public nodes running on the Nervos network.'
+  data_from: 'Data From'
+  home_search: 'Search by Address / Transaction ID / Block ID'
+
+  views:
+    pagination:
+      next: 'Next'
+      last: 'Last'
+      prev: 'Prev'

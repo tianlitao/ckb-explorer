@@ -38,5 +38,13 @@ module Server
     config.generators do |g|
       g.fixture_replacement :factory_bot, dir: "test/factories"
     end
+
+    config.session_store :cookie_store, key: '_nervosscan_session'
+    config.middleware.use ActionDispatch::Cookies # Required for all session management
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :zh]
+
   end
 end

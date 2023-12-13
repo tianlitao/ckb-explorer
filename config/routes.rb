@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   resources :transactions
   resources :blocks
 
+  get '/auth/auth0/callback' => 'auth0#callback'
+  get '/auth/failure' => 'auth0#failure'
+  get '/auth/logout' => 'auth0#logout'
+  post 'search' => 'home#search'
+
   namespace :api do
     namespace :v1 do
       namespace :external do

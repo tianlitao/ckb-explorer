@@ -1,0 +1,18 @@
+<div id="transactions_content">
+<% ckb_transactions.each do |ckb_transaction| %>
+
+  <div class="flex w-full pb-3 transaction_simple flex-col md:flex-row">
+    <div class="whitespace-nowrap mr-4" style="flex: 2 1 0%;">
+      <%= link_to ckb_transaction.tx_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), transaction_path(ckb_transaction.tx_hash), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+    </div>
+
+    <div class="flex-1 whitespace-nowrap mr-4">
+      #<%= link_to ckb_transaction.block_number, block_path(ckb_transaction.block_number), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+    </div>
+
+    <div class="flex-1 whitespace-nowrap">
+      <%= (ckb_transaction.capacity_involved.to_f / 10 ** 8).round(2) %>CKB
+    </div>
+  </div>
+<% end %>
+</div>

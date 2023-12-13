@@ -50,7 +50,7 @@ gem "digest-crc"
 
 # Backgroud Jobs
 
-gem "sidekiq"
+gem "sidekiq", '7.0.1'
 gem "rufus-scheduler"
 # bulk insertion of data into database using ActiveRecord
 gem "activerecord-import"
@@ -130,10 +130,14 @@ gem "async-websocket", "~> 0.22.1", require: false
 
 gem 'acts-as-taggable-on', '~> 9.0'
 gem 'rest-client'
-gem "turbo-rails", "~> 2.0.0.pre.beta"
+gem "turbo-rails", "~> 1.5.0"
+gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 2.0"
 gem 'cssbundling-rails'
 
 gem 'jsbundling-rails'
 
 gem "kaminari"
+
+gem 'omniauth-auth0', '~> 3.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0' # prevents forged authentication requests

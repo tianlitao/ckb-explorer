@@ -61,6 +61,8 @@ Rails.application.configure do
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  config.hosts << "nervosscan.com"
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

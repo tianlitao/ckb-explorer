@@ -1,98 +1,102 @@
-<div class="w-full max-w-screen-xl mx-auto  flex flex-col md:flex-row">
-  <div class="flex-1 border border-gray-300 p-4 rounded-lg shadow-lg m-4">
-    <div class="border-b border-gray-200">
-      <h4 class="text-2xl font-bold dark:text-white">地址详情</h4>
-    </div>
-    <div class="mb-4 mt-4">
-      <div>
-        <span>地址：</span>
-      </div>
-      <div class="break-words whitespace-normal">
-        <%= @address.address_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
-      </div>
-    </div>
+<div class="container mx-auto">
 
-    <div class="mb-4 mt-4">
-      <div>
-        <span>可用余额：</span>
-      </div>
-      <div class="break-words whitespace-normal">
-        <%= (@address.balance.to_f / 10 ** 8).round(2) %>CKB
-      </div>
-    </div>
-    <div class="mb-4 mt-4">
-      <div>
-        <span>NervosDao锁定金额：</span>
-      </div>
-      <div class="break-words whitespace-normal">
-        <%= (@address.dao_deposit.to_f / 10 ** 8).round(2) %>CKB
-      </div>
-    </div>
-
-    <div class="mb-4 mt-4">
-      <div>
-        <span>可用Cells：</span>
-      </div>
-      <div class="break-words whitespace-normal">
-        <%= @address.live_cells_count %>
-      </div>
-    </div>
-
-  </div>
-  <div class="flex-grow border border-gray-300 p-4 rounded-lg shadow-lg m-4" style="flex-grow: 2;">
-    <div class="border-b border-gray-200">
-      <h4 class="text-2xl font-bold dark:text-white">交易历史</h4>
-    </div>
-
-    <% @transactions.each do |transaction| %>
+  <div class="w-full mx-auto  flex flex-col md:flex-row">
+    <div class="flex-1 border border-gray-300 p-4 rounded-lg shadow-lg m-4">
       <div class="border-b border-gray-200">
-
-        <div class="mb-4 mt-4">
-          <div class="break-words whitespace-normal">
-            Tx：<%= transaction.tx_hash %>
-            区块：<%= transaction.block_number %>
-          </div>
+        <h4 class="text-2xl font-bold dark:text-white"><%= t 'address_detail' %></h4>
+      </div>
+      <div class="mb-4 mt-4">
+        <div>
+          <span><%= t 'address' %>：</span>
         </div>
-        <div class="flex">
-          <div class="flex-1">
-            <h5 class="text-1xl font-bold dark:text-white">输入</h5>
-            <% transaction.display_inputs.each do |input| %>
-              <div class="bg-green-50 p-4 m-4">
-                <% if input[:from_cellbase] %>
-                  <div>
-                    Cellbase for Block <%= input[:target_block_number] %>
-                  </div>
-                <% else %>
-                  <div>
-                    <%= input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
-                  </div>
-                  <div>
-                    <%= (input[:capacity].to_f / 10 ** 8).round(2) %>CKB
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-          <div class="flex-1">
-            <h5 class="text-1xl font-bold dark:text-white">输出</h5>
-            <% transaction.display_outputs.each do |output| %>
-              <div class="bg-green-50 p-4 m-4">
-                <div>
-                  <%= output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
-                </div>
-                <div>
-                  <%= (output[:capacity].to_f / 10 ** 8).round(2) %>CKB
-                </div>
-              </div>
-            <% end %>
-          </div>
-
+        <div class="break-words whitespace-normal">
+          <%= @address.address_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
         </div>
       </div>
 
+      <div class="mb-4 mt-4">
+        <div>
+          <span><%= t 'balance' %>：</span>
+        </div>
+        <div class="break-words whitespace-normal">
+          <%= (@address.balance.to_f / 10 ** 8).round(8) %>CKB
+        </div>
+      </div>
+      <div class="mb-4 mt-4">
+        <div>
+          <span><%= t 'nervos_dao_deposit' %>：</span>
+        </div>
+        <div class="break-words whitespace-normal">
+          <%= (@address.dao_deposit.to_f / 10 ** 8).round(8) %>CKB
+        </div>
+      </div>
 
-    <% end %>
-    <%= paginate @transactions, total_pages: (@address.ckb_transactions_count / 10.0).ceil %>
+      <div class="mb-4 mt-4">
+        <div>
+          <span><%= t 'live_cell' %>：</span>
+        </div>
+        <div class="break-words whitespace-normal">
+          <%= @address.live_cells_count %>
+        </div>
+      </div>
 
+    </div>
+    <div class="flex-grow border border-gray-300 p-4 rounded-lg shadow-lg m-4" style="flex-grow: 2;">
+      <div class="border-b border-gray-200">
+        <h4 class="text-2xl font-bold dark:text-white"><%= t 'transaction_history' %></h4>
+      </div>
+
+      <% @transactions.each do |transaction| %>
+        <div class="border-b border-gray-200">
+
+          <div class="mb-4 mt-4">
+            <div class="break-words whitespace-normal">
+              Tx：<%= transaction.tx_hash %>
+              <%= t 'block' %>：<%= transaction.block_number %>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row">
+            <div class="flex-1">
+              <h5 class="text-1xl font-bold dark:text-white"><%= t 'input' %></h5>
+              <% transaction.display_inputs.each do |input| %>
+                <div class="bg-green-50 p-4 m-4">
+                  <% if input[:from_cellbase] %>
+                    <div>
+                      Cellbase for Block <%= input[:target_block_number] %>
+                    </div>
+                  <% else %>
+                    <div>
+                      <%= input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                    </div>
+                    <div>
+                      <%= (input[:capacity].to_f / 10 ** 8).round(8) %>CKB
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="flex-1">
+              <h5 class="text-1xl font-bold dark:text-white"><%= t 'output' %></h5>
+              <% transaction.display_outputs.each do |output| %>
+                <div class="bg-green-50 p-4 m-4">
+                  <div>
+                    <%= output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                  </div>
+                  <div>
+                    <%= (output[:capacity].to_f / 10 ** 8).round(8) %>CKB
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+
+
+      <% end %>
+      <%= paginate @transactions, total_pages: (@address.ckb_transactions_count / 10.0).ceil %>
+
+    </div>
   </div>
+  <%= render 'shared/disqus' %>
 </div>

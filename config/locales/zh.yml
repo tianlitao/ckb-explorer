@@ -1,0 +1,52 @@
+zh:
+  home: "主页"
+  address_index: "持币地址"
+  miner: "矿工"
+  login: "登录"
+  total_supply: '当前供应量'
+  transaction_per_minute: '每分钟的交易数'
+  transaction_last_24_hours: '最近 24 小时的交易数'
+  average_block_time: '平均出块时间'
+  mining_hash_rate: '算力'
+  mining_difficulty: '难度'
+  epoch: 'Epoch'
+  estimated_epoch_time: '预计 Epoch 时间'
+  latest_blocks: '最新区块'
+  latest_transactions: '最新交易'
+  all_address_count: "持有CKB > 0 的地址数"
+  top_10_address_count: "前10地址占比"
+  top_100_address_count: "前100地址占比"
+  top_1000_address_count: "前1000地址占比"
+  address_ranking: "地址排行"
+  index: "序号"
+  address: "地址"
+  tag: "标签"
+  balance: "余额"
+  percentage: "占比"
+  address_detail: "地址详情"
+  nervos_dao_deposit: "Nervos DAO锁定金额"
+  live_cell: "可用Cells"
+  transaction_history: "交易历史"
+  block: "区块"
+  input: "输入"
+  output: "输出"
+  transaction_overview: "交易总览"
+  block_timestamp: '时间'
+  transaction_fee: '交易费'
+  transaction_cycles: '交易体积'
+  transaction_detail: '交易详情'
+  transaction_in_this_block: '交易'
+  block_detail: '块详情'
+  block_cycles: '块体积'
+  block_transaction_count: '交易数量'
+  miner_reward: '矿工奖励'
+  ckb_node_online: '在线公共节点'
+  ckb_node_online_count: 'Nervos网络当前有<span>0</span>个在线公共节点.'
+  data_from: '数据来源'
+  home_search: '搜索地址/区块ID/交易ID'
+
+  views:
+    pagination:
+      next: '下一页'
+      last: '最后一页'
+      prev: '上一页'

@@ -11,6 +11,7 @@
     "autoprefixer": "^10.4.16",
     "esbuild": "^0.19.8",
     "flowbite": "^2.2.0",
+    "jquery": "^3.7.1",
     "leaflet": "1.9.4",
     "leaflet.fullscreen": "^3.0.0",
     "leaflet.heat": "^0.2.0",

@@ -4,46 +4,46 @@
       <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-4 dark:text-white sm:p-8">
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl font-extrabold"><%= @all_count %></dt>
-          <dd class="text-gray-500 dark:text-gray-400">持有CKB > 0 的地址数</dd>
+          <dd class="text-gray-500 dark:text-gray-400"><%= t 'all_address_count' %></dd>
         </div>
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl font-extrabold"><%= (@ten_sum*100.to_f/@all_supply).round(2) %>%</dt>
-          <dd class="text-gray-500 dark:text-gray-400">前10地址占比</dd>
+          <dd class="text-gray-500 dark:text-gray-400"><%= t 'top_10_address_count' %></dd>
         </div>
 
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl font-extrabold"><%= (@hun_sum*100.to_f/@all_supply).round(2) %>%</dt>
-          <dd class="text-gray-500 dark:text-gray-400">前100地址占比</dd>
+          <dd class="text-gray-500 dark:text-gray-400"><%= t 'top_100_address_count' %></dd>
         </div>
         <div class="flex flex-col items-center justify-center">
           <dt class="mb-2 text-3xl font-extrabold"><%= (@thou_sum*100.to_f/@all_supply).round(2) %>%</dt>
-          <dd class="text-gray-500 dark:text-gray-400">前1000地址占比</dd>
+          <dd class="text-gray-500 dark:text-gray-400"><%= t 'top_1000_address_count' %></dd>
         </div>
       </dl>
     </div>
   </div>
 
 
-  <h4 class="text-2xl font-extrabold dark:text-white my-4">Address Ranking</h4>
+  <h4 class="text-2xl font-extrabold dark:text-white my-4"><%= t 'address_ranking' %></h4>
 
   <div class="relative overflow-x-auto my-4">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="px-6 py-2">
-          序号
+          <%= t 'index' %>
         </th>
         <th scope="col" class="px-6 py-2">
-          地址
+          <%= t 'address' %>
         </th>
         <th scope="col" class="px-6 py-2">
-          标签
+          <%= t 'tag' %>
         </th>
         <th scope="col" class="px-6 py-2">
-          余额
+          <%= t 'balance' %>
         </th>
         <th scope="col" class="px-6 py-2">
-          占比
+          <%= t 'percentage' %>
         </th>
       </tr>
       </thead>

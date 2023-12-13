@@ -58,6 +58,10 @@ class Block < ApplicationRecord
   scope :h24, -> { where("timestamp > ?", 24.hours.ago.to_datetime.strftime("%Q")) }
 
   # broadcasts_refreshes
+  after_create_commit do
+    broadcast_prepend_later_to 'block', target: 'blocks', partial: "home/block", locals: {block: self}
+    broadcast_replace_later_to 'transaction', target: 'transactions_content', partial: "home/transactions", locals: {ckb_transactions: CkbTransaction.tx_committed.recent.normal.limit(10).to_a}
+  end
 
   def self.tip_block
     recent.first
