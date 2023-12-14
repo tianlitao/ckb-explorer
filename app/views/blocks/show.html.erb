@@ -19,7 +19,7 @@
           <span><%= t 'miner' %>：</span>
         </div>
         <div class="break-words whitespace-normal">
-          <%= @block.miner_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+          <%= link_to @block.miner_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), address_path(@block.miner_hash), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
         </div>
       </div>
 
@@ -81,7 +81,7 @@
 
           <div class="mb-4 mt-4">
             <div class="break-words whitespace-normal">
-              Tx：<%= transaction.tx_hash %>
+              Tx：<%= link_to transaction.tx_hash, transaction_path(transaction.tx_hash), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
               <%= t 'block' %>：<%= transaction.block_number %>
             </div>
           </div>
@@ -92,11 +92,11 @@
                 <div class="bg-green-50 p-4 m-4">
                   <% if input[:from_cellbase] %>
                     <div>
-                      Cellbase for Block <%= input[:target_block_number] %>
+                      Cellbase for Block <%= link_to input[:target_block_number], block_path(input[:target_block_number]), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
                     </div>
                   <% else %>
                     <div>
-                      <%= input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                      <%= link_to input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), address_path(input[:address_hash]), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
                     </div>
                     <div>
                       <%= (input[:capacity].to_f / 10 ** 8).round(8) %>CKB
@@ -110,7 +110,7 @@
               <% transaction.display_outputs.each do |output| %>
                 <div class="bg-green-50 p-4 m-4">
                   <div>
-                    <%= output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                    <%= link_to output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), address_path(output[:address_hash]), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
                   </div>
                   <div>
                     <%= (output[:capacity].to_f / 10 ** 8).round(8) %>CKB

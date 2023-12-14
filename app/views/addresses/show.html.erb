@@ -7,7 +7,10 @@
       </div>
       <div class="mb-4 mt-4">
         <div>
-          <span><%= t 'address' %>：</span>
+          <span><%= t 'address' %>：
+          </span>
+          <%= render partial: 'shared/copy_to_clipboard', locals: {content: @address.address_hash,tip: t('copy_address_to_clipboard')} %>
+
         </div>
         <div class="break-words whitespace-normal">
           <%= @address.address_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
@@ -51,8 +54,8 @@
 
           <div class="mb-4 mt-4">
             <div class="break-words whitespace-normal">
-              Tx：<%= transaction.tx_hash %>
-              <%= t 'block' %>：<%= transaction.block_number %>
+              Tx：<%= link_to transaction.tx_hash, transaction_path(transaction.tx_hash), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
+              <%= t 'block' %>：<%= link_to transaction.block_number, block_path(transaction.block_number), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
             </div>
           </div>
           <div class="flex flex-col md:flex-row">
@@ -62,11 +65,15 @@
                 <div class="bg-green-50 p-4 m-4">
                   <% if input[:from_cellbase] %>
                     <div>
-                      Cellbase for Block <%= input[:target_block_number] %>
+                      Cellbase for Block <%= link_to input[:target_block_number], block_path(input[:target_block_number]), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
                     </div>
                   <% else %>
                     <div>
-                      <%= input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                      <% if input[:address_hash].to_s != @address.address_hash %>
+                        <%= link_to input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), address_path(input[:address_hash]), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
+                      <% else %>
+                        <%= input[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                      <% end %>
                     </div>
                     <div>
                       <%= (input[:capacity].to_f / 10 ** 8).round(8) %>CKB
@@ -80,7 +87,11 @@
               <% transaction.display_outputs.each do |output| %>
                 <div class="bg-green-50 p-4 m-4">
                   <div>
-                    <%= output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                    <% if output[:address_hash].to_s != @address.address_hash %>
+                      <%= link_to output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), address_path(output[:address_hash]), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
+                    <% else %>
+                      <%= output[:address_hash].to_s.gsub(/(.{16}).*(.{16})/, '\1...\2') %>
+                    <% end %>
                   </div>
                   <div>
                     <%= (output[:capacity].to_f / 10 ** 8).round(8) %>CKB

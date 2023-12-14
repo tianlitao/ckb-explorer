@@ -44,6 +44,9 @@ zh:
   ckb_node_online_count: 'Nervos网络当前有<span>0</span>个在线公共节点.'
   data_from: '数据来源'
   home_search: '搜索地址/区块ID/交易ID'
+  copy_to_clipboard: '已复制到粘贴板!'
+  copy_address_to_clipboard: '复制地址到粘贴板'
+  copy_tx_to_clipboard: '复制Tx到粘贴板'
 
   views:
     pagination:

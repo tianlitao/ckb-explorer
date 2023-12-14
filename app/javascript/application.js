@@ -42,5 +42,79 @@ document.addEventListener("turbo:load", function() {
 
 
     };
+
+
+    // copy to clipboard
+    const fallbackCopyTextToClipboard = (text) => {
+        var textArea = document.createElement('textarea');
+        textArea.value = text;
+
+        // Avoid scrolling to bottom
+        textArea.style.top = '0';
+        textArea.style.left = '0';
+        textArea.style.position = 'fixed';
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+        document.body.removeChild(textArea);
+    };
+
+    const copyTextToClipboard = (text) => {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(
+            function () {
+                console.log('Async: Copying to clipboard was successful!');
+            },
+            function (err) {
+                console.error('Async: Could not copy text: ', err);
+            }
+        );
+    };
+
+    const initiateCopyToClipboard = (element) => {
+        var textToCopy = element
+            .querySelector('[data-clipboard-content]')
+            .getAttribute('data-clipboard-content');
+        var button = element.getElementsByClassName('copy-to-clipboard-button')[0];
+        var alert = document.getElementById('copied-code-alert');
+        // var copyText = button.getElementsByClassName('copy-text')[0];
+        button.addEventListener('click', function () {
+            copyTextToClipboard(textToCopy);
+            alert.classList.remove('opacity-0', 'hidden');
+            alert.classList.add('opacity-100', 'flex');
+            // copyText.innerHTML = 'Copied';
+
+            setTimeout(function () {
+                alert.classList.add('opacity-0', 'hidden');
+                alert.classList.remove('opacity-100', 'flex');
+                copyText.innerHTML = 'Copy';
+            }, 3000);
+        });
+    };
+
+    const initializeCodeExamples = (theme) => {
+        const codeExampleEls = document.querySelectorAll('.copy-div');
+
+        codeExampleEls.forEach((c) => {
+            initiateCopyToClipboard(c);
+        });
+    };
+
+    initializeCodeExamples('')
+
+
 });
 

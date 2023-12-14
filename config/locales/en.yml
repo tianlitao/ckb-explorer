@@ -75,6 +75,9 @@ en:
   ckb_node_online_count: 'There are a total of <span>0</span> active public nodes running on the Nervos network.'
   data_from: 'Data From'
   home_search: 'Search by Address / Transaction ID / Block ID'
+  copy_to_clipboard: 'Copied to clipboard!'
+  copy_address_to_clipboard: 'Copied Address to clipboard!'
+  copy_tx_to_clipboard: 'Copied Tx to clipboard!'
 
   views:
     pagination:
