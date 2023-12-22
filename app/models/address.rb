@@ -26,7 +26,7 @@ class Address < ApplicationRecord
 
   after_save do
     if self.saved_changes['balance'].present?
-      TelegramBot.perform_async(self, self.balance - self.saved_changes['balance'][0].to_i) if self.tg_bots.active.exists?
+      TelegramBot.perform_async(self.id, self.balance - self.saved_changes['balance'][0].to_i) if self.tg_bots.active.exists?
     end
   end
 
