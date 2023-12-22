@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
   acts_as_taggable_on :tags
-
+  audited only: [:balance]
 
   PREFIX_MAINNET = "ckb".freeze
   PREFIX_TESTNET = "ckt".freeze
@@ -11,6 +11,7 @@ class Address < ApplicationRecord
   has_many :mining_infos
   has_many :udt_accounts
   has_many :dao_events
+  has_many :tg_bots, foreign_key: :address_hash, primary_key: :address_hash
   validates :balance, :cell_consumed, :ckb_transactions_count, :interest, :dao_deposit,
             numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :lock_hash, presence: true, uniqueness: true
@@ -22,6 +23,12 @@ class Address < ApplicationRecord
   after_commit :flush_cache
 
   attr_accessor :query_address
+
+  after_save do
+    if self.saved_changes['balance'].present?
+      TelegramBot.perform_async(self, self.balance - self.saved_changes['balance'][0].to_i) if self.tg_bots.active.exists?
+    end
+  end
 
   def custom_ckb_transactions
     ckb_transactions

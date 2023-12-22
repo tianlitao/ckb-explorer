@@ -4,6 +4,7 @@
   - critical
   - default
   - low
+  - telegram
 
 production:
   :concurrency: 20
