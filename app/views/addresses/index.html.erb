@@ -7,16 +7,16 @@
           <dd class="text-gray-500 dark:text-gray-400"><%= t 'all_address_count' %></dd>
         </div>
         <div class="flex flex-col items-center justify-center">
-          <dt class="mb-2 text-3xl font-extrabold"><%= (@ten_sum*100.to_f/@all_supply).round(2) %>%</dt>
+          <dt class="mb-2 text-3xl font-extrabold"><%= (@ten_sum * 100.to_f / @all_supply).round(2) %>%</dt>
           <dd class="text-gray-500 dark:text-gray-400"><%= t 'top_10_address_count' %></dd>
         </div>
 
         <div class="flex flex-col items-center justify-center">
-          <dt class="mb-2 text-3xl font-extrabold"><%= (@hun_sum*100.to_f/@all_supply).round(2) %>%</dt>
+          <dt class="mb-2 text-3xl font-extrabold"><%= (@hun_sum * 100.to_f / @all_supply).round(2) %>%</dt>
           <dd class="text-gray-500 dark:text-gray-400"><%= t 'top_100_address_count' %></dd>
         </div>
         <div class="flex flex-col items-center justify-center">
-          <dt class="mb-2 text-3xl font-extrabold"><%= (@thou_sum*100.to_f/@all_supply).round(2) %>%</dt>
+          <dt class="mb-2 text-3xl font-extrabold"><%= (@thou_sum * 100.to_f / @all_supply).round(2) %>%</dt>
           <dd class="text-gray-500 dark:text-gray-400"><%= t 'top_1000_address_count' %></dd>
         </div>
       </dl>
@@ -54,7 +54,7 @@
             <%= index + 1 %>
           </td>
           <th>
-            <%= link_to address.address_hash.to_s.gsub(/(.{16}).*(.{16})/,'\1...\2'), address_path(address.address_hash), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+            <%= link_to address.address_hash.to_s.gsub(/(.{16}).*(.{16})/, '\1...\2'), address_path(address.address_hash), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
           </th>
           <td class="">
             <% if address.tag_list.present? %>
@@ -64,10 +64,10 @@
             <% end %>
           </td>
           <td class="">
-            <%= address.balance/10**8 %>CKB
+            <%= address.balance / 10 ** 8 %>CKB
           </td>
           <td class="">
-            <%= (address.balance*100.to_f/@all_supply).round(2) %>%
+            <%= (address.balance * 100.to_f / @all_supply).round(2) %>%
           </td>
         </tr>
       <% end %>

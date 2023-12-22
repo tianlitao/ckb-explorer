@@ -78,6 +78,7 @@ en:
   copy_to_clipboard: 'Copied to clipboard!'
   copy_address_to_clipboard: 'Copied Address to clipboard!'
   copy_tx_to_clipboard: 'Copied Tx to clipboard!'
+  support_us: 'Support Us'
 
   views:
     pagination:

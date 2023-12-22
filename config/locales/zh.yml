@@ -47,6 +47,7 @@ zh:
   copy_to_clipboard: '已复制到粘贴板!'
   copy_address_to_clipboard: '复制地址到粘贴板'
   copy_tx_to_clipboard: '复制Tx到粘贴板'
+  support_us: '支持我们'
 
   views:
     pagination:
