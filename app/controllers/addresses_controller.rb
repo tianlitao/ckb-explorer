@@ -12,5 +12,6 @@ class AddressesController < ViewController
   def show
     @address = Address.find_by_address_hash(params[:id])
     @transactions = @address.ckb_transactions.order('id desc').page(params[:page]).per(10)
+    @qr = RQRCode::QRCode.new("https://t.me/ckb_watch_bot?start=#{@address&.id}", :size => 7, :level => :l )
   end
 end

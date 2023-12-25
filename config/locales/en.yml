@@ -62,7 +62,7 @@ en:
   input: "Input"
   output: "Output"
   transaction_overview: "Transaction Overview"
-  block_timestamp: 'DateTime'
+  block_timestamp: 'Timestamp'
   transaction_fee: 'Transaction Fee'
   transaction_cycles: 'Transaction Cycles'
   transaction_detail: 'Transaction Detail'
@@ -79,6 +79,11 @@ en:
   copy_address_to_clipboard: 'Copied Address to clipboard!'
   copy_tx_to_clipboard: 'Copied Tx to clipboard!'
   support_us: 'Support Us'
+  watch_address: 'Watch This Address'
+  click_here: 'Click here'
+  tg_tip: ',if you have Telegram installed on this device'
+  tg_tip2: 'If Telegram is not installed, please install it yourself first and then click to jump.'
+  tg_tip3: 'Or use mobile scan the QR code.'
 
   views:
     pagination:

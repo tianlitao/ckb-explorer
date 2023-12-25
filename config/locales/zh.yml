@@ -48,6 +48,11 @@ zh:
   copy_address_to_clipboard: '复制地址到粘贴板'
   copy_tx_to_clipboard: '复制Tx到粘贴板'
   support_us: '支持我们'
+  watch_address: '监控地址'
+  click_here: '点击此处'
+  tg_tip: ',如果当前设备你已经安装了Telegram.'
+  tg_tip2: '如果没有安装Telegram，请先自行安装，然后点击跳转。'
+  tg_tip3: '或者使用手机扫描二维码。'
 
   views:
     pagination:

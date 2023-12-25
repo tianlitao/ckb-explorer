@@ -24,8 +24,8 @@ Telegram::Bot::Client.run(token) do |bot|
         bot.api.send_message(chat_id: message.chat.id, text: "You have not watching any addresses.
 To start any watch, reply: /start address",parse_mode: 'HTML')
       end
-
     else
+      bot.api.send_message(chat_id: message.chat.id, text: "#{message.text}")
       if message.text.start_with?('/start ')
         hash = message.text.gsub('/start ', '').strip
         if QueryKeyUtils.valid_address?(hash)
@@ -33,6 +33,11 @@ To start any watch, reply: /start address",parse_mode: 'HTML')
           tg_bot = TgBot.find_or_initialize_by(chat_id: message.chat.id, address_hash: hash)
           tg_bot.is_use = true
           tg_bot.save if tg_bot.changed?
+        elsif (hash.match?(/\A\d+\z/)) && address = Address.find_by(id: hash)
+            bot.api.send_message(chat_id: message.chat.id, text: "You've started watching address #{address.address_hash}")
+            tg_bot = TgBot.find_or_initialize_by(chat_id: message.chat.id, address_hash: address.address_hash)
+            tg_bot.is_use = true
+            tg_bot.save if tg_bot.changed?
         else
           bot.api.send_message(chat_id: message.chat.id, text: "Sorry. Address format is incorrect. Please try again.")
         end
