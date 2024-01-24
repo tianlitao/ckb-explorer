@@ -85,6 +85,7 @@ en:
   tg_tip2: 'If Telegram is not installed, please install it yourself first and then click to jump.'
   tg_tip3: 'Or use mobile scan the QR code.'
 
+
   views:
     pagination:
       next: 'Next'
