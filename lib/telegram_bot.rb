@@ -1,8 +1,8 @@
 require_relative "../config/environment"
 require 'telegram/bot'
 
-token = Settings.tg_bot_token
-
+#token = Settings.tg_bot_token
+token = '6721575566:AAHsc5bbd9QLdKLgIacOpVuC_zT-DORTfCA'
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text

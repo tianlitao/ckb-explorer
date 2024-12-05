@@ -62,10 +62,7 @@
             <div class="break-words whitespace-normal">
               Tx：<%= link_to transaction.tx_hash, transaction_path(transaction.tx_hash), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
               <%= t 'block' %>：<%= link_to transaction.block_number, block_path(transaction.block_number), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
-<<<<<<< HEAD
               <%= t('block_timestamp') %>: <%= Time.at((transaction.block_timestamp / 1000).to_i).strftime("%Y-%m-%d %H:%M:%S") %>
-=======
->>>>>>> 3c17f8f3 (add copy and language)
             </div>
           </div>
           <div class="flex flex-col md:flex-row">
